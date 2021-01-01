@@ -1,0 +1,26 @@
+    var launchOBS = obs.exec('cd "C:\\Program Files\\obs-studio\\bin\\64bit\\" && "obs64.exe"', function (error, stdout, stderr) {
+        if (error) {
+            // now this could mean we break if the program closes out of the control of node we crash but it stops the  error stuff in console
+            if (error.code == 1) {
+                console.log("Error: OBS has now been closed");
+                return;
+            }
+            // this should catch anything else 
+            console.log(error.stack);
+            process.exit(1);
+        }
+    });
+
+        ps.kill({
+        pid: data.data.obs_pid
+    }, function (err, resultList) {
+        if (err) {
+            throw new Error(err);
+        }
+        var process = resultList[0];
+        if (process) {
+            console.log(`PID: %s, COMMAND: %s, ARGUMENTS: 5s`, process.pid, process.command, process.arguments)
+        } else {
+            console.log(`No such process foud`)
+        }
+    });

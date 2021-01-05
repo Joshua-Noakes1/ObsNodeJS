@@ -1,0 +1,7 @@
+.jumbotron {
+    margin-top: 50px;
+}
+
+.btn-outline-primary:hover {
+    transition: .8s;
+}
